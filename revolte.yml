@@ -26,7 +26,7 @@ revolte:
           type: STORAGE_BUCKET
           name: storage_bucket_service
           configurations:
-            bucketName: buck-nio
+            bucketName: buck-nio-2
             versioningStatus: enabled
             public: true
     qa:
@@ -57,7 +57,7 @@ revolte:
           type: STORAGE_BUCKET
           name: storage_bucket_service
           configurations:
-            bucketName: kitkat-buck-abc
+            bucketName: kitkat-buck-abc-1
             versioningStatus: enabled
             public: true
     production:
@@ -87,7 +87,7 @@ revolte:
           type: STORAGE_BUCKET
           name: storage_bucket_service
           configurations:
-            bucketName: buck-iop
+            bucketName: buck-iop-3
             versioningStatus: enabled
             public: true
     preview:
