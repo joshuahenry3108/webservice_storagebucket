@@ -44,6 +44,11 @@ revolte:
               ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
               SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
               REGION: '#{storage_bucket_service.region}'
+          insights:
+            cpu:
+              - cpu_time_idle
+              - cpu_time_user
+              - cpu_time_system
           specifications:
             cpu: 2
             memory: 1
