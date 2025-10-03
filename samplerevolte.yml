@@ -1,0 +1,30 @@
+revolte:
+  version: "1.0"
+  project: "feed-ontario"
+  type: "WEB_SERVICE"
+  appName: "stream-service"
+  health: "/health"
+  port: 8080
+  env:
+    qa:
+      branch: "main"
+      entryPoint: "index.js"
+      specs:
+        compute:
+          cpu: 2
+          memory: 2
+          storage: 30
+        database:
+          cpu: 2
+          memory: 1
+          storage: 50
+          engine: "postgres"
+          version: "16"
+      variables:
+        BASE_URL: /api/v1
+        DATABASE_URL: "#{dbUrl}"
+        DATABASE_PORT: "#{dbPort}"
+        DATABASE_USERNAME: "#{dbUsername}"
+        DATABASE_PASSWORD: "#{dbPassword}"
+        DATABASE_NAME: "#{dbUser}"
+        THIRD_PARTY_URL: https://testtt.requestcatcher.com/
