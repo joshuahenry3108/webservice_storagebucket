@@ -1,7 +1,7 @@
-FROM node:12.16-alpine
+FROM node:18-alpine
 RUN mkdir node
 COPY . ./node
 WORKDIR ./node/
-RUN npm install 
+RUN npm install
 EXPOSE 8080
-CMD node app.js
+CMD ["node", "app.js"]
