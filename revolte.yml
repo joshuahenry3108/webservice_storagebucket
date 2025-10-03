@@ -112,5 +112,6 @@ revolte:
           type: STORAGE_BUCKET
           name: storage_bucket_service
           configurations:
+            bucketName: buck-iop-4
             versioningStatus: enabled
             public: true
