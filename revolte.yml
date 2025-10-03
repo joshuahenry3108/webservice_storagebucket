@@ -1,30 +1,111 @@
 revolte:
-  version: "1.0"
-  project: "feed-ontario"
-  type: "WEB_SERVICE"
-  appName: "stream-service"
-  health: "/health"
-  port: 8080
+  version: '1.0'
+  project: Simlabs
+  appName: s3-app-new
   env:
+    staging:
+      branch: main
+      services:
+        rid_1:
+          type: WEB_SERVICE
+          name: web_service
+          entryPoint: index.js
+          properties:
+            health: /health
+            port: 8080
+            variables:
+              BASE_URL: /api/v1
+              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
+              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
+              REGION: '#{storage_bucket_service.region}'
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+        rid_2:
+          type: STORAGE_BUCKET
+          name: storage_bucket_service
+          configurations:
+            bucketName: buck-nio
+            versioningStatus: enabled
+            public: true
     qa:
-      branch: "main"
-      entryPoint: "index.js"
-      specs:
-        compute:
-          cpu: 2
-          memory: 2
-          storage: 30
-        database:
-          cpu: 2
-          memory: 1
-          storage: 50
-          engine: "postgres"
-          version: "16"
-      variables:
-        BASE_URL: /api/v1
-        DATABASE_URL: "#{dbUrl}"
-        DATABASE_PORT: "#{dbPort}"
-        DATABASE_USERNAME: "#{dbUsername}"
-        DATABASE_PASSWORD: "#{dbPassword}"
-        DATABASE_NAME: "#{dbUser}"
-        THIRD_PARTY_URL: https://testtt.requestcatcher.com/
+      branch: main
+      services:
+        rid_1:
+          type: WEB_SERVICE
+          name: web_service
+          entryPoint: index.js
+          properties:
+            health: /health
+            port: 8080
+            variables:
+              BASE_URL: /api/v1
+              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
+              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
+              REGION: '#{storage_bucket_service.region}'
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+        rid_2:
+          type: STORAGE_BUCKET
+          name: storage_bucket_service
+          configurations:
+            bucketName: kitkat-buck-abc
+            versioningStatus: enabled
+            public: true
+    production:
+      branch: main
+      services:
+        rid_1:
+          type: WEB_SERVICE
+          name: web_service
+          entryPoint: index.js
+          properties:
+            health: /health
+            port: 8080
+            variables:
+              BASE_URL: /api/v1
+              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
+              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
+              REGION: '#{storage_bucket_service.region}'
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+            autoScaling:
+              replica:
+                min: 1
+                max: 1
+        rid_2:
+          type: STORAGE_BUCKET
+          name: storage_bucket_service
+          configurations:
+            bucketName: buck-iop
+            versioningStatus: enabled
+            public: true
+    preview:
+      services:
+        rid_1:
+          type: WEB_SERVICE
+          name: web_service
+          entryPoint: index.js
+          properties:
+            health: /health
+            port: 8080
+            variables:
+              BASE_URL: /api/v1
+              ACCESS_KEY_ID: '#{storage_bucket_service.accessKeyId}'
+              SECRET_ACCESS_KEY_ID: '#{storage_bucket_service.secretAccessKeyId}'
+              REGION: '#{storage_bucket_service.region}'
+          specifications:
+            cpu: 2
+            memory: 1
+            storage: 30
+        rid_2:
+          type: STORAGE_BUCKET
+          name: storage_bucket_service
+          configurations:
+            versioningStatus: enabled
+            public: true
